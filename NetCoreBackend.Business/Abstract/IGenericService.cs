@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCoreBackend.Core.Utilities.Results.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,10 +10,10 @@ namespace NetCoreBackend.Business.Abstract
 {
     public interface IGenericService<T> where T : class
     {
-        List<T> GetAll();
-        T Get(Expression<Func<T, bool>> filter);
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        IDataResult<List<T>> GetAll();
+        IDataResult<T> GetById(int TId);
+        IResult Add(T entity);
+        IResult Update(T entity);
+        IResult Delete(T entity);
     }
 }

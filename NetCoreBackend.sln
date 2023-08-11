@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreBackend.DataAccess", "NetCoreBackend.DataAccess\NetCoreBackend.DataAccess.csproj", "{7558578E-4F4C-4CD2-9177-3436D820EA6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreBackend.DataAccess", "NetCoreBackend.DataAccess\NetCoreBackend.DataAccess.csproj", "{7558578E-4F4C-4CD2-9177-3436D820EA6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreBackend.Business", "NetCoreBackend.Business\NetCoreBackend.Business.csproj", "{741FE2D8-BD30-4417-A5A9-049E6409DF0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreBackend.Business", "NetCoreBackend.Business\NetCoreBackend.Business.csproj", "{741FE2D8-BD30-4417-A5A9-049E6409DF0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreBackend.Entities", "NetCoreBackend.Entities\NetCoreBackend.Entities.csproj", "{5C045EA4-263B-426F-8BE9-8C366EFE6E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreBackend.Entities", "NetCoreBackend.Entities\NetCoreBackend.Entities.csproj", "{5C045EA4-263B-426F-8BE9-8C366EFE6E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreBackend.Core", "NetCoreBackend.Core\NetCoreBackend.Core.csproj", "{5E66B644-E775-4259-B638-3D4CCD019D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreBackend.Core", "NetCoreBackend.Core\NetCoreBackend.Core.csproj", "{5E66B644-E775-4259-B638-3D4CCD019D4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreBackend.WebAPI", "NetCoreBackend.WebAPI\NetCoreBackend.WebAPI.csproj", "{D38E7FD5-96AB-47A8-92C6-F88BA7CDF89A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5E66B644-E775-4259-B638-3D4CCD019D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E66B644-E775-4259-B638-3D4CCD019D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E66B644-E775-4259-B638-3D4CCD019D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38E7FD5-96AB-47A8-92C6-F88BA7CDF89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38E7FD5-96AB-47A8-92C6-F88BA7CDF89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38E7FD5-96AB-47A8-92C6-F88BA7CDF89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38E7FD5-96AB-47A8-92C6-F88BA7CDF89A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

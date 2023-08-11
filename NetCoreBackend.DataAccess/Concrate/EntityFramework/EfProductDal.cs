@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreBackend.DataAccess.Concrate.EntityFramework
 {
-    public class EfProdcutDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
         public List<ProductDetailDto> GetProductDetails()
         {
