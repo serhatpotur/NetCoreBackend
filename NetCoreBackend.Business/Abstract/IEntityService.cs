@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreBackend.Business.Abstract
 {
-    public interface IGenericService<T> where T : class
+    public interface IEntityService<T> where T : class
     {
         IDataResult<List<T>> GetAll();
         IDataResult<T> GetById(int TId);

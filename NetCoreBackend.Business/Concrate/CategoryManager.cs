@@ -17,12 +17,14 @@ public class CategoryManager : ICategoryService
 
     public IResult Add(Category entity)
     {
-        throw new NotImplementedException();
+        _categoryDal.Add(entity);
+        return new SuccessResult();
     }
 
     public IResult Delete(Category entity)
     {
-        throw new NotImplementedException();
+        _categoryDal.Delete(entity);
+        return new SuccessResult();
     }
 
     public IDataResult<List<Category>> GetAll()
@@ -32,11 +34,12 @@ public class CategoryManager : ICategoryService
 
     public IDataResult<Category> GetById(int TId)
     {
-        throw new NotImplementedException();
+        return new SuccessDataResult<Category>(_categoryDal.Get(x => x.CategoryId == TId));
     }
 
     public IResult Update(Category entity)
     {
-        throw new NotImplementedException();
+        _categoryDal.Update(entity);
+        return new SuccessResult();
     }
 }

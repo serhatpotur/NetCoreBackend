@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreBackend.Business.Abstract
 {
-    public interface IProductService : IGenericService<Product>
+    public interface IProductService : IEntityService<Product>
     {
         IDataResult<List<Product>> GetAllByCategoryList(int categoryId);
         IDataResult<List<Product>> GetByUnitPrice(decimal minPrice, decimal maxPrice);

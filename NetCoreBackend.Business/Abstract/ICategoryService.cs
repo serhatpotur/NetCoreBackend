@@ -2,6 +2,6 @@
 
 namespace NetCoreBackend.Business.Abstract;
 
-public interface ICategoryService : IGenericService<Category>
+public interface ICategoryService : IEntityService<Category>
 {
 }

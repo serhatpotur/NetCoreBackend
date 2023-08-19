@@ -4,6 +4,7 @@ using Castle.DynamicProxy;
 using NetCoreBackend.Business.Abstract;
 using NetCoreBackend.Business.Concrate;
 using NetCoreBackend.Core.Utilities.Interceptors;
+using NetCoreBackend.Core.Utilities.Security.JWT;
 using NetCoreBackend.DataAccess.Abstract;
 using NetCoreBackend.DataAccess.Concrate.EntityFramework;
 
@@ -19,7 +20,13 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
         builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
-        builder.RegisterType<EfProductDal>().As<ICategoryDal>().SingleInstance();
+        builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+
+        builder.RegisterType<UserManager>().As<IUserService>();
+        builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+        builder.RegisterType<AuthManager>().As<IAuthService>();
+        builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
         // GetExecutingAssembly :Çalışan uygulama içerisinde assembly leri bul
@@ -30,6 +37,8 @@ public class AutofacBusinessModule : Module
             .EnableInterfaceInterceptors(new ProxyGenerationOptions()
             {
                 // Ve onlar için AspectInterceptorSelectoru kullan,çağır
+
+                //Load çalıştığında ilk olarak yukarıda ki çağırdığımız manager sınıflarına bakar ve  Aspect'i([ValidationAspect vs]) var mı bakar . Daha sonra AspectInterceptorSelector uygular
                 Selector = new AspectInterceptorSelector()
             }).SingleInstance();
     }

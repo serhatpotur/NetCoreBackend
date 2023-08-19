@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using NetCoreBackend.Business.Abstract;
+using NetCoreBackend.Business.BusinessAspects.Autofac;
 using NetCoreBackend.Business.Constants;
 using NetCoreBackend.Business.ValidationRules.FluentValidation;
 using NetCoreBackend.Core.Aspects.Autofac.Validation;
@@ -22,7 +23,7 @@ namespace NetCoreBackend.Business.Concrate
             _productDal = productDal;
             _categoryService = categoryService;
         }
-
+        [SecuredOperation("product.add,admin")] // Bu yetkilere sahip olanlar yapabilsin
         [ValidationAspect(typeof(ProductValidator))] // Bu methodu ProductValidator kullanarak doğrular
         public IResult Add(Product entity)
         {
