@@ -17,7 +17,8 @@ public class AspectInterceptorSelector : IInterceptorSelector
             .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
         // Bulduğun attributeları bir listeye at
         classAttributes.AddRange(methodAttributes);
-        //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
+
+        //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger))); burayı açarsak FileLogger bütün proje seviyesinde çalışır
 
         //Attributeların çalışma sırasını belirlediğimiz alan
         return classAttributes.OrderBy(x => x.Priority).ToArray();

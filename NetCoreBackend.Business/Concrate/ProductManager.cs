@@ -3,6 +3,9 @@ using NetCoreBackend.Business.Abstract;
 using NetCoreBackend.Business.BusinessAspects.Autofac;
 using NetCoreBackend.Business.Constants;
 using NetCoreBackend.Business.ValidationRules.FluentValidation;
+using NetCoreBackend.Core.Aspects.Autofac.Caching;
+using NetCoreBackend.Core.Aspects.Autofac.Performance;
+using NetCoreBackend.Core.Aspects.Autofac.Transaction;
 using NetCoreBackend.Core.Aspects.Autofac.Validation;
 using NetCoreBackend.Core.CrossCuttingConcerns.Validation;
 using NetCoreBackend.Core.Utilities.Business;
@@ -25,6 +28,8 @@ namespace NetCoreBackend.Business.Concrate
         }
         [SecuredOperation("product.add,admin")] // Bu yetkilere sahip olanlar yapabilsin
         [ValidationAspect(typeof(ProductValidator))] // Bu methodu ProductValidator kullanarak doğrular
+        [TransactionScopeAspect] //İşlem devam ederken hata meydana gelirse Db'de veri tutarlılığı bozulmasın diye işlemin başında yapılan işlemleri geri alır. Veri tutarlılığı sağlar
+        [CacheRemoveAspect("IProductService.Get")] // IProductService içerisinde Get olan herşeyi temizler
         public IResult Add(Product entity)
         {
             var results = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(entity.CategoryId), CheckIfProductNameExists(entity.ProductName), CheckIfCategoryLimitExceded());
@@ -44,6 +49,8 @@ namespace NetCoreBackend.Business.Concrate
 
         }
 
+        [CacheAspect] // Bellekte varsa bellekten getirir, yoksa Db'den getirir
+        [PerformanceAspect(10)] // Bu methodun çalışması 10 sn'den fazla sürerse beni uyar
         public IDataResult<List<Product>> GetAll()
         {
             if (DateTime.Now.Hour == 23)
@@ -57,7 +64,7 @@ namespace NetCoreBackend.Business.Concrate
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.CategoryId == categoryId));
         }
-
+        [CacheAspect]
         public IDataResult<Product> GetById(int TId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(x => x.ProductId == TId));

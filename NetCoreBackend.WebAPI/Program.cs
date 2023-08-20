@@ -6,6 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using NetCoreBackend.Business.Abstract;
 using NetCoreBackend.Business.Concrate;
 using NetCoreBackend.Business.DependencyResolvers.Autofac;
+using NetCoreBackend.Core.DependencyResolvers;
+using NetCoreBackend.Core.Extensions;
+using NetCoreBackend.Core.Utilities.IoC;
 using NetCoreBackend.Core.Utilities.Security.Encryption;
 using NetCoreBackend.Core.Utilities.Security.JWT;
 using NetCoreBackend.DataAccess.Abstract;
@@ -22,6 +25,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(opt =>
+{
+    opt.RegisterModule(new AutofacBusinessModule());
+});
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -39,10 +47,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(opt =>
+// Ýleride baþka modullerimiz olursa new diyerek yanýna ekleyebiliriz
+builder.Services.AddDependencyResolvers(new ICoreModule[]
 {
-    opt.RegisterModule(new AutofacBusinessModule());
+    new CoreModule()
 });
+ServiceTool.Create(builder.Services);
+
 
 
 //builder.Services.AddScoped<IProductDal, EfProdcutDal>();
